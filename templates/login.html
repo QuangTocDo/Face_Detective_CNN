@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Travelowkey Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/loginForm.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script> -->
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="#">Destinations</a>
+            <a href="#">Tours</a>
+            <a href="#">Contact</a>
+        </nav>
+        <h1>TraveLowkey</h1>
+    </header>
+    <form action="/login" method="POST">
+        <h2>Login</h2>
+        <label for="name">User Name:</label>
+        <input type="text" id="name" name="username" required placeholder="Your Username">
+        <label for="email">Password:</label>
+        <input type="password" id="password" name="password" required placeholder="Your Password">
+        {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-danger text-center" style="margin:3px 0;padding: 5px 0; background-color: #f8d7da; border-radius: 10px;color:#333">
+      <ul style="list-style-type: none;">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+    <script>
+        setTimeout(() => {
+            const alertElement = document.querySelector(".alert");
+            alertElement.remove();
+        }, 2500);
+    </script>
+  {% endif %}
+{% endwith %}
+        <button type="submit">Login</button>
+        <p>Create an account? <a href="{{ url_for('register') }}"> Sign Up </a></p>
+        <hr>
+        <p>or connect with</p>
+        <span>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-google"></i></a>
+            <a href="#"><i class="fa-regular fa-face-smile"></i></a>
+        </span>
+    </form>
+</body>
+</html>
+
